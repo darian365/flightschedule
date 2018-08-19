@@ -10,14 +10,16 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmailSender {
 	
-	public static void send(String content) {
+	public void send(String content) {
 		final String username = "fei.darian.li@gmail.com";
 		final String password = "haohaoxuexi180411!";
 		//fexudqunzeeznnxe
 		
-
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
@@ -36,15 +38,13 @@ public class EmailSender {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("fei.darian.li@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
-				InternetAddress.parse("darian.lee16@gmail.com"));
+				InternetAddress.parse("86235336@qq.com"));
+			//294171739@qq.com,
 			message.setSubject("My Schedule");
-//			message.setText(content);
 			message.setContent(content, "text/html");
-			
 
 			Transport.send(message);
 
-			System.out.println("Done");
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
